@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         EventManager.AddListener(Events.GAME_STARTED, OnGameStarted);
         EventManager.AddListener(Events.GAME_OVER, OnGameOver);
         EventManager.AddListener(Events.GAME_FINISHED, OnGameFinished);
+        EventManager.AddListener(Events.LEVEL_READY, OnLevelReady);
     }
     
     private void OnDisable()
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         EventManager.RemoveListener(Events.GAME_STARTED, OnGameStarted);
         EventManager.RemoveListener(Events.GAME_OVER, OnGameOver);
         EventManager.RemoveListener(Events.GAME_FINISHED, OnGameFinished);
+        EventManager.RemoveListener(Events.LEVEL_READY, OnLevelReady);
     }
 
     private void Update()
@@ -62,6 +64,11 @@ public class GameManager : MonoBehaviour
         GameState.IsGameOver = true;
 
         StartCoroutine(WaitAndRestart());
+    }
+    
+    private void OnLevelReady()
+    {
+        GameState.IsLevelReady = true;
     }
 
     IEnumerator WaitAndRestart()

@@ -12,7 +12,6 @@ namespace pixelook
 
     class BoolEvent : UnityEvent<bool>
     {
-
     }
 
     class IntEvent : UnityEvent<int>
