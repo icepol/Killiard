@@ -8,7 +8,12 @@
         private static int _lives;
 
         public static bool IsGameRunning { get; set; }
+        
+        public static bool IsLevelReady { get; set; }
+        
         public static bool IsGameOver { get; set; }
+        
+        public static int PowerUpsCount { get; set; }
 
         public static int Lives
         {
@@ -29,15 +34,19 @@
         
         public static void OnApplicationStarted()
         {
+            PowerUpsCount = 0;
             Lives = 3;
             IsGameRunning = false;
+            IsLevelReady = false;
             IsGameOver = false;
         }
 
         public static void OnGameStarted()
         {
+            PowerUpsCount = 0;
             Lives = 3;
             IsGameRunning = true;
+            IsLevelReady = false;
             IsGameOver = false;
         }
     }

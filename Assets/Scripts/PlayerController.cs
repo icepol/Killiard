@@ -10,8 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] KeyCode moveRightKey;
     
     [SerializeField] float force = 5f;
-    [SerializeField] float maxSpeed = 5f;
-    [SerializeField] float speed;
+    [SerializeField] float currentForce;
     
     [SerializeField] ParticleSystem dustParticles;
     [SerializeField] float dustSpawnRate = 0.25f;
@@ -29,6 +28,11 @@ public class PlayerController : MonoBehaviour
     {
         EventManager.AddListener(Events.LEVEL_READY, OnGameReady);
         EventManager.AddListener(Events.GAME_OVER, OnGameOver);
+    }
+
+    private void Start()
+    {
+        currentForce = force;
     }
 
     void Update()
@@ -62,25 +66,25 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKey(moveUpKey))
         {
-            forceToApply.z += force * Time.deltaTime;
+            forceToApply.z += currentForce * Time.deltaTime;
             isMoving = true;
         }
         
         if (Input.GetKey(moveDownKey))
         {
-            forceToApply.z -= force * Time.deltaTime;
+            forceToApply.z -= currentForce * Time.deltaTime;
             isMoving = true;
         }
         
         if (Input.GetKey(moveLeftKey))
         {
-            forceToApply.x -= force * Time.deltaTime;
+            forceToApply.x -= currentForce * Time.deltaTime;
             isMoving = true;
         }
         
         if (Input.GetKey(moveRightKey))
         {
-            forceToApply.x += force * Time.deltaTime;
+            forceToApply.x += currentForce * Time.deltaTime;
             isMoving = true;
         }
 
@@ -101,5 +105,16 @@ public class PlayerController : MonoBehaviour
         Instantiate(dustParticles, transform.position, Quaternion.identity);
         
         _nextDustSpawnTime = dustSpawnRate;
+    }
+    
+    public float DefaultForce
+    {
+        get => force;
+    }
+    
+    public float CurrentForce
+    {
+        get => currentForce;
+        set => currentForce = value;
     }
 }
