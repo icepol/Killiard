@@ -34,14 +34,14 @@ public class UIManager : MonoBehaviour
         mainPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         // gameFinishedPanel.SetActive(false);
-        // gamePlayPanel.SetActive(false);
+        gamePlayPanel.SetActive(false);
     }
 
     private void OnGameStarted()
     {
         DisableAll();
         
-        // gamePlayPanel.SetActive(true);
+        gamePlayPanel.SetActive(true);
     }
     
     private void OnGameOver()

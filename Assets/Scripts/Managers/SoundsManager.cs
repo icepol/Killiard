@@ -36,7 +36,7 @@ namespace pixelook
 
         private void OnPlayerHitMantinel()
         {
-            if (playerHitMantinelSound && Settings.IsSfxEnabled)
+            if (playerHitMantinelSound && Settings.IsSfxEnabled && GameState.IsGameRunning)
                 AudioSource.PlayClipAtPoint(playerHitMantinelSound, targetTransform.position);
         }
 
