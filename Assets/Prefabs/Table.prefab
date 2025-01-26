@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 282298982423791966}
   - component: {fileID: 2242938283982298153}
   - component: {fileID: 123447109099774700}
+  - component: {fileID: 6878581251581422411}
   m_Layer: 0
   m_Name: MantinelLeft
   m_TagString: Untagged
@@ -108,6 +109,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6878581251581422411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31993438382830023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ce73eb41f13402eb4db12649c5cdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &984261749579489465
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +133,7 @@ GameObject:
   - component: {fileID: 4113319741933267056}
   - component: {fileID: 7821961600609999776}
   - component: {fileID: 651107880331034963}
+  - component: {fileID: 6542851401466823869}
   m_Layer: 0
   m_Name: MantinelTop
   m_TagString: Untagged
@@ -216,6 +230,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6542851401466823869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984261749579489465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ce73eb41f13402eb4db12649c5cdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1964116088774794877
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +328,7 @@ GameObject:
   - component: {fileID: 6995541391822785436}
   - component: {fileID: 6252693685425770842}
   - component: {fileID: 1279644813080539362}
+  - component: {fileID: 8656093723130501058}
   m_Layer: 0
   m_Name: MantinelRight
   m_TagString: Untagged
@@ -398,6 +425,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8656093723130501058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5001421360491352170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ce73eb41f13402eb4db12649c5cdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6348934609225508123
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,6 +449,7 @@ GameObject:
   - component: {fileID: 4159547104455998748}
   - component: {fileID: 9124656901358216134}
   - component: {fileID: 178141591691382235}
+  - component: {fileID: 1182868573744397379}
   m_Layer: 0
   m_Name: MantinelBottom
   m_TagString: Untagged
@@ -506,6 +546,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1182868573744397379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6348934609225508123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ce73eb41f13402eb4db12649c5cdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6428678335060529999
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,13 +14,13 @@ namespace pixelook
         void OnEnable()
         {
             EventManager.AddListener(Events.GAME_OVER, OnGameOver);
-            EventManager.AddListener(Events.PLAYER_CONTACT, OnPlayerContact);
+            EventManager.AddListener(Events.PLAYER_CONTACT_FAST, OnPlayerContact);
         }
 
         private void OnDisable()
         {
             EventManager.RemoveListener(Events.GAME_OVER, OnGameOver);
-            EventManager.RemoveListener(Events.PLAYER_CONTACT, OnPlayerContact);
+            EventManager.RemoveListener(Events.PLAYER_CONTACT_FAST, OnPlayerContact);
         }
 
         private void OnGameOver()

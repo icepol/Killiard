@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     {
         if (GameState.IsLevelReady) return;
         
+        GameState.IsLevelReady = true;
+        
         EventManager.TriggerEvent(Events.LEVEL_READY);
     }
 
@@ -35,6 +37,12 @@ public class Player : MonoBehaviour
     {
         var player = other.gameObject.GetComponent<Player>();
         if (player != null) OnPlayerContact();
+        
+        var mantinel = other.gameObject.GetComponent<Mantinel>();
+        if (mantinel != null) OnMantinelContact();
+        
+        var ball = other.gameObject.GetComponent<Ball>();
+        if (ball != null) OnBallContact();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,10 +64,18 @@ public class Player : MonoBehaviour
 
     private void OnPlayerContact()
     {
-        print(_rigidbody.linearVelocity.magnitude);
-        
-        if (_rigidbody.linearVelocity.magnitude < 5f) return;
-        
-        EventManager.TriggerEvent(Events.PLAYER_CONTACT);
+        EventManager.TriggerEvent(_rigidbody.linearVelocity.magnitude < 5f
+            ? Events.PLAYER_CONTACT_SLOW
+            : Events.PLAYER_CONTACT_FAST);
+    }
+    
+    private void OnMantinelContact()
+    {
+        EventManager.TriggerEvent(Events.PLAYER_CONTACT_MANTINEL);
+    }
+    
+    private void OnBallContact()
+    {
+        EventManager.TriggerEvent(Events.PLAYER_CONTACT_BALL);
     }
 }

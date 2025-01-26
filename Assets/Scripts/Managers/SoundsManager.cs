@@ -6,66 +6,68 @@ namespace pixelook
     {
         [SerializeField] private Transform targetTransform;
         
-        [SerializeField] private AudioClip[] leafActivatedSounds;
-        [SerializeField] private AudioClip[] leafCollectedSounds;
-        [SerializeField] private AudioClip[] leafFailedSounds;
-        [SerializeField] private AudioClip[] enemyCollisionSounds;
-        [SerializeField] private AudioClip[] movementSounds;
-        [SerializeField] private AudioClip gameOverSound;
-        [SerializeField] private AudioClip gameFinishedSound;
+        [SerializeField] private AudioClip playerHitMantinelSound;
+        [SerializeField] private AudioClip ballHitMantinelSound;
+        [SerializeField] private AudioClip playerHitPlayerSlowSound;
+        [SerializeField] private AudioClip playerHitPlayerFastSound;
+        [SerializeField] private AudioClip playerHitBallSound;
+        [SerializeField] private AudioClip powerUpSounds;
+        [SerializeField] private AudioClip playerDiedSound;
 
         private void OnEnable()
         {
             EventManager.AddListener(Events.GAME_OVER, OnGameOver);
-            EventManager.AddListener(Events.GAME_FINISHED, OnGameFinished);
+            EventManager.AddListener(Events.PLAYER_CONTACT_MANTINEL, OnPlayerHitMantinel);
+            EventManager.AddListener(Events.PLAYER_CONTACT_SLOW, OnPlayerHitPlayerSlow);
+            EventManager.AddListener(Events.PLAYER_CONTACT_FAST, OnPlayerHitPlayerFast);
+            EventManager.AddListener(Events.PLAYER_CONTACT_BALL, OnPlayerHitBall);
+            EventManager.AddListener(Events.POWER_UP_COLLECTED, OnPowerUpCollected);
         }
 
         private void OnDisable()
         {
             EventManager.RemoveListener(Events.GAME_OVER, OnGameOver);
-            EventManager.RemoveListener(Events.GAME_FINISHED, OnGameFinished);
+            EventManager.RemoveListener(Events.PLAYER_CONTACT_MANTINEL, OnPlayerHitMantinel);
+            EventManager.RemoveListener(Events.PLAYER_CONTACT_SLOW, OnPlayerHitPlayerSlow);
+            EventManager.RemoveListener(Events.PLAYER_CONTACT_FAST, OnPlayerHitPlayerFast);
+            EventManager.RemoveListener(Events.PLAYER_CONTACT_BALL, OnPlayerHitBall);
+            EventManager.RemoveListener(Events.POWER_UP_COLLECTED, OnPowerUpCollected);
         }
 
-        private void OnLeafActivated()
+        private void OnPlayerHitMantinel()
         {
-            if (leafActivatedSounds.Length > 0 && Settings.IsSfxEnabled)
-                AudioSource.PlayClipAtPoint(leafActivatedSounds[Random.Range(0, leafActivatedSounds.Length)], targetTransform.position);
+            if (playerHitMantinelSound && Settings.IsSfxEnabled)
+                AudioSource.PlayClipAtPoint(playerHitMantinelSound, targetTransform.position);
         }
 
-        private void OnLeafCollected()
+        private void OnPlayerHitPlayerSlow()
         {
-            if (leafCollectedSounds.Length > 0 && Settings.IsSfxEnabled)
-                AudioSource.PlayClipAtPoint(leafCollectedSounds[Random.Range(0, leafCollectedSounds.Length)], targetTransform.position);
+            if (playerHitPlayerSlowSound && Settings.IsSfxEnabled)
+                AudioSource.PlayClipAtPoint(playerHitPlayerSlowSound, targetTransform.position);
         }
         
-        private void OnLeafFailed()
+        private void OnPlayerHitPlayerFast()
         {
-            if (leafFailedSounds.Length > 0 && Settings.IsSfxEnabled)
-                AudioSource.PlayClipAtPoint(leafFailedSounds[Random.Range(0, leafFailedSounds.Length)], targetTransform.position);
+            if (playerHitPlayerFastSound && Settings.IsSfxEnabled)
+                AudioSource.PlayClipAtPoint(playerHitPlayerFastSound, targetTransform.position);
         }
         
-        private void OnEnemyCollision()
+        private void OnPowerUpCollected()
         {
-            if (enemyCollisionSounds.Length > 0 && Settings.IsSfxEnabled)
-                AudioSource.PlayClipAtPoint(enemyCollisionSounds[Random.Range(0, enemyCollisionSounds.Length)], targetTransform.position);
+            if (powerUpSounds && Settings.IsSfxEnabled)
+                AudioSource.PlayClipAtPoint(powerUpSounds, targetTransform.position);
         }
         
-        private void OnMovementChanged()
+        private void OnPlayerHitBall()
         {
-            if (movementSounds.Length > 0 && Settings.IsSfxEnabled)
-                AudioSource.PlayClipAtPoint(movementSounds[Random.Range(0, movementSounds.Length)], targetTransform.position);
+            if (playerHitBallSound && Settings.IsSfxEnabled)
+                AudioSource.PlayClipAtPoint(playerHitBallSound, targetTransform.position);
         }
         
         private void OnGameOver()
         {
-            if (gameOverSound && Settings.IsSfxEnabled)
-                AudioSource.PlayClipAtPoint(gameOverSound, targetTransform.position);
-        }
-        
-        private void OnGameFinished()
-        {
-            if (gameFinishedSound && Settings.IsSfxEnabled)
-                AudioSource.PlayClipAtPoint(gameFinishedSound, targetTransform.position);
+            if (playerDiedSound && Settings.IsSfxEnabled)
+                AudioSource.PlayClipAtPoint(playerDiedSound, targetTransform.position);
         }
     }
 }

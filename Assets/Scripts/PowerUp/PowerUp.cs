@@ -42,6 +42,8 @@ public class PowerUp : MonoBehaviour
         
         // TODO: spawn particles
         
+        EventManager.TriggerEvent(Events.POWER_UP_COLLECTED);
+        
         Destroy(gameObject);
     }
 }
