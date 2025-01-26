@@ -1,9 +1,11 @@
+using System;
 using pixelook;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] string playerName;
+    [SerializeField] private string playerName;
+    [SerializeField] private Player enemy;
 
     private Rigidbody _rigidbody;
     
@@ -18,7 +20,14 @@ public class Player : MonoBehaviour
     {
         EventManager.AddListener(Events.GAME_STARTED, OnGameStarted);
     }
-    
+
+    private void Update()
+    {
+        if (!GameState.IsGameRunning) return;
+        
+        transform.LookAt(enemy.transform);
+    }
+
     private void OnDisable()
     {
         EventManager.RemoveListener(Events.GAME_STARTED, OnGameStarted);
