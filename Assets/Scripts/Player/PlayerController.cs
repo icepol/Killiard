@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] ParticleSystem dustParticles;
     [SerializeField] float dustSpawnRate = 0.25f;
+    
+    [SerializeField] ParticleSystem dustFastParticles;
+    [SerializeField] float dustFastSpawnRate = 0.25f;
 
     private Rigidbody _rigidbody;
     private bool _isMovementEnabled;
@@ -101,10 +104,19 @@ public class PlayerController : MonoBehaviour
             _nextDustSpawnTime -= Time.deltaTime;
             return;
         }
-
-        Instantiate(dustParticles, transform.position, Quaternion.identity);
         
-        _nextDustSpawnTime = dustSpawnRate;
+        var isFast = _rigidbody.linearVelocity.magnitude > 2.5f;
+
+        if (isFast)
+        {
+            Instantiate(dustFastParticles, transform.position, Quaternion.identity);
+            _nextDustSpawnTime = dustFastSpawnRate;
+        }
+        else
+        {
+            Instantiate(dustParticles, transform.position, Quaternion.identity);
+            _nextDustSpawnTime = dustSpawnRate;
+        }
     }
     
     public float DefaultForce

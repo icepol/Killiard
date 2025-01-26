@@ -1,4 +1,3 @@
-using System;
 using pixelook;
 using UnityEngine;
 
@@ -6,10 +5,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private string playerName;
     [SerializeField] private Player enemy;
+    
+    [SerializeField] private ParticleSystem playerDiedParticles;
+    [SerializeField] private LiveCam liveCam;
 
     private Rigidbody _rigidbody;
     
     public bool IsShieldActive { get; set; }
+    public LiveCam LiveCam => liveCam;
     
     private void Awake()
     {
@@ -66,6 +69,8 @@ public class Player : MonoBehaviour
         
         GameState.DeadPlayerName = playerName;
         
+        // Instantiate(playerDiedParticles, transform.position, Quaternion.identity);
+        
         EventManager.TriggerEvent(Events.GAME_OVER);
         
         Destroy(gameObject);
@@ -73,18 +78,36 @@ public class Player : MonoBehaviour
 
     private void OnPlayerContact()
     {
-        EventManager.TriggerEvent(_rigidbody.linearVelocity.magnitude < 5f
-            ? Events.PLAYER_CONTACT_SLOW
-            : Events.PLAYER_CONTACT_FAST);
+        var isFastHit = _rigidbody.linearVelocity.magnitude > 2.5f;
+        
+        EventManager.TriggerEvent( isFastHit
+            ? Events.PLAYER_CONTACT_FAST
+            : Events.PLAYER_CONTACT_SLOW);
+
+        OnFastHit();
     }
     
     private void OnMantinelContact()
     {
         EventManager.TriggerEvent(Events.PLAYER_CONTACT_MANTINEL);
+        
+        OnFastHit();
     }
     
     private void OnBallContact()
     {
         EventManager.TriggerEvent(Events.PLAYER_CONTACT_BALL);
+        
+        OnFastHit();
+    }
+    
+    private void OnFastHit()
+    {
+        var isFastHit = _rigidbody.linearVelocity.magnitude > 2.5f;
+
+        if (isFastHit)
+        {
+            liveCam.SetBangFace();
+        }
     }
 }

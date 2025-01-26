@@ -5057,8 +5057,10 @@ MonoBehaviour:
   moveRightKey: 100
   force: 5
   currentForce: 0
-  dustParticles: {fileID: 4583460253881402641, guid: d83bb03d34ff146eda8c9a9879a685d1, type: 3}
-  dustSpawnRate: 0.25
+  dustParticles: {fileID: 4559159179445937486, guid: b74b3774840ed40fb91b4e480b93d871, type: 3}
+  dustSpawnRate: 0.35
+  dustFastParticles: {fileID: 4583460253881402641, guid: d83bb03d34ff146eda8c9a9879a685d1, type: 3}
+  dustFastSpawnRate: 0.2
 --- !u!54 &6896539005255175283
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5100,6 +5102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Cricetus
   enemy: {fileID: 0}
+  playerDiedParticles: {fileID: 0}
+  liveCam: {fileID: 0}
 --- !u!114 &5017741937972705210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10209,7 +10213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8877939083231016624, guid: d83bb03d34ff146eda8c9a9879a685d1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

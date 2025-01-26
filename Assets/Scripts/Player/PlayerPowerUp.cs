@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using pixelook;
 using UnityEngine;
 
 public class PlayerPowerUp : MonoBehaviour
 {
+    [SerializeField] private PowerUpDisplay powerUpDisplay;
+    
     [SerializeField] float speedupMultiplier = 1.5f;
     [SerializeField] float powerUpDuration = 5f;
     
@@ -20,12 +23,20 @@ public class PlayerPowerUp : MonoBehaviour
     {
         EventManager.AddListener(Events.GAME_OVER, OnGameOver);
     }
-    
+
+    private void Start()
+    {
+        Reset();
+    }
+
     public void ActivateSpeedUp()
     {
         Reset();
         
         _playerController.CurrentForce *= speedupMultiplier;
+        _player.LiveCam.SetAngryFace();
+        
+        powerUpDisplay.SetSpeedPowerUp();
 
         StartCoroutine(WaitAndReset());
     }
@@ -35,6 +46,9 @@ public class PlayerPowerUp : MonoBehaviour
         Reset();
 
         _player.IsShieldActive = true;
+        _player.LiveCam.SetAngryFace();
+        
+        powerUpDisplay.SetShieldPowerUp();
 
         StartCoroutine(WaitAndReset());
     }
@@ -50,6 +64,8 @@ public class PlayerPowerUp : MonoBehaviour
         
         _playerController.CurrentForce = _playerController.DefaultForce;
         _player.IsShieldActive = false;
+        
+        powerUpDisplay.Reset();
     }
 
     IEnumerator WaitAndReset()
