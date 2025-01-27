@@ -1507,8 +1507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de3cc5bc8a5940acb9439771db73933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedPowerUpTexture: {fileID: 0}
-  shieldPowerUpTexture: {fileID: 0}
+  speedPowerUpTexture: {fileID: 2800000, guid: 70d466805f5af4ff083bfdc8401ca1e4, type: 3}
+  shieldPowerUpTexture: {fileID: 2800000, guid: 30c127a08bfd14ce2b1f6c25218c5cf3, type: 3}
 --- !u!1 &771392201
 GameObject:
   m_ObjectHideFlags: 0
