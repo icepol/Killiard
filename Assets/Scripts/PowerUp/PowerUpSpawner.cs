@@ -10,6 +10,8 @@ public class PowerUpSpawner : MonoBehaviour
     
     [SerializeField] private float xRange = 9f;
     [SerializeField] private float yRange = 6f;
+    
+    private bool _isSpawning;
 
     private void OnEnable()
     {
@@ -25,6 +27,10 @@ public class PowerUpSpawner : MonoBehaviour
     
     private void OnGameReady()
     {
+        if (_isSpawning) return;
+        
+        _isSpawning = true;
+        
         StartCoroutine(WaitAndSpawn());
     }
     
