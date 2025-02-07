@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class RemoveOnStart : MonoBehaviour
+namespace pixelook
 {
-    void Start()
+    public class RemoveOnStart : MonoBehaviour
     {
-        Destroy(gameObject);
+        void Start()
+        {
+            Destroy(gameObject);
+        }
     }
 }

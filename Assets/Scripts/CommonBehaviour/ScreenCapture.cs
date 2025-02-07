@@ -2,31 +2,34 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class ScreenCapture : MonoBehaviour
+namespace pixelook
 {
-    [SerializeField] private float activeArea = 0.5f;
-
-    private float _activeAreaSize;
-
-    private void Start()
+    public class ScreenCapture : MonoBehaviour
     {
-        _activeAreaSize = Screen.height * activeArea;
-    }
+        [SerializeField] private float activeArea = 0.5f;
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && Input.mousePosition.y > _activeAreaSize 
-            || Input.GetKeyDown(KeyCode.S))
-            Capture();
-    }
+        private float _activeAreaSize;
 
-    void Capture()
-    {
-        String fileName = $"screenshot_{DateTime.UtcNow:yyyyMMdd_HH:mm:ss}_{Screen.width}x{Screen.height}.png"; 
-        String filePath = Path.Combine(Application.persistentDataPath, fileName);
-        
-        UnityEngine.ScreenCapture.CaptureScreenshot(filePath);
-        
-        Debug.Log($"ScreenCapture: image saved to '{filePath}'");
+        private void Start()
+        {
+            _activeAreaSize = Screen.height * activeArea;
+        }
+
+        void Update()
+        {
+            if (Input.GetMouseButtonDown(0) && Input.mousePosition.y > _activeAreaSize
+                || Input.GetKeyDown(KeyCode.S))
+                Capture();
+        }
+
+        void Capture()
+        {
+            String fileName = $"screenshot_{DateTime.UtcNow:yyyyMMdd_HH:mm:ss}_{Screen.width}x{Screen.height}.png";
+            String filePath = Path.Combine(Application.persistentDataPath, fileName);
+
+            UnityEngine.ScreenCapture.CaptureScreenshot(filePath);
+
+            Debug.Log($"ScreenCapture: image saved to '{filePath}'");
+        }
     }
 }

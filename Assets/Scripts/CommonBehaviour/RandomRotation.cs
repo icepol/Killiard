@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class RandomRotation : MonoBehaviour
+namespace pixelook
 {
-    [SerializeField] private float[] rotations;
-    [SerializeField] private float rotationVariation = 0.1f;
-        
-    void Start()
+    public class RandomRotation : MonoBehaviour
     {
-        transform.Rotate(
-            Vector3.up * (
-                rotations[Random.Range(0, rotations.Length)] + Random.Range(-rotationVariation, rotationVariation)
+        [SerializeField] private float[] rotations;
+        [SerializeField] private float rotationVariation = 0.1f;
+
+        void Start()
+        {
+            transform.Rotate(
+                Vector3.up * (
+                    rotations[Random.Range(0, rotations.Length)] + Random.Range(-rotationVariation, rotationVariation)
                 ), Space.Self);
+        }
     }
 }

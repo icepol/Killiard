@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class DisableOnStart : MonoBehaviour
+namespace pixelook
 {
-    void Awake()
+    public class DisableOnStart : MonoBehaviour
     {
-        Destroy(gameObject);
+        void Awake()
+        {
+            Destroy(gameObject);
+        }
     }
 }

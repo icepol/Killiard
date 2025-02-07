@@ -3,91 +3,94 @@ using pixelook;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace pixelook
 {
-    [SerializeField] private float restartLevelDelay = 5;
-
-    public static GameManager Instance { get; private set; }
-    
-    private void Awake()
+    public class GameManager : MonoBehaviour
     {
-        Instance = this;
+        [SerializeField] private float restartLevelDelay = 5;
 
-        GameState.OnApplicationStarted();
+        public static GameManager Instance { get; private set; }
 
-        Application.targetFrameRate = 60;
-        QualitySettings.vSyncCount = 0;
-    }
+        private void Awake()
+        {
+            Instance = this;
 
-    private void OnEnable()
-    {
-        EventManager.AddListener(Events.GAME_STARTED, OnGameStarted);
-        EventManager.AddListener(Events.GAME_OVER, OnGameOver);
-        EventManager.AddListener(Events.GAME_FINISHED, OnGameFinished);
-        EventManager.AddListener(Events.LEVEL_READY, OnLevelReady);
-    }
-    
-    private void OnDisable()
-    {
-        EventManager.RemoveListener(Events.GAME_STARTED, OnGameStarted);
-        EventManager.RemoveListener(Events.GAME_OVER, OnGameOver);
-        EventManager.RemoveListener(Events.GAME_FINISHED, OnGameFinished);
-        EventManager.RemoveListener(Events.LEVEL_READY, OnLevelReady);
-    }
+            GameState.OnApplicationStarted();
 
-    private void Update()
-    {
-        if (GameState.IsGameRunning) return;
-        if (GameState.IsGameOver) return;
+            Application.targetFrameRate = 60;
+            QualitySettings.vSyncCount = 0;
+        }
 
-        if (!IsGameStarted()) return;
-        
-        EventManager.TriggerEvent(Events.GAME_STARTED);
-    }
+        private void OnEnable()
+        {
+            EventManager.AddListener(Events.GAME_STARTED, OnGameStarted);
+            EventManager.AddListener(Events.GAME_OVER, OnGameOver);
+            EventManager.AddListener(Events.GAME_FINISHED, OnGameFinished);
+            EventManager.AddListener(Events.LEVEL_READY, OnLevelReady);
+        }
 
-    private void OnGameStarted()
-    {
-        GameState.OnGameStarted();
-    }
+        private void OnDisable()
+        {
+            EventManager.RemoveListener(Events.GAME_STARTED, OnGameStarted);
+            EventManager.RemoveListener(Events.GAME_OVER, OnGameOver);
+            EventManager.RemoveListener(Events.GAME_FINISHED, OnGameFinished);
+            EventManager.RemoveListener(Events.LEVEL_READY, OnLevelReady);
+        }
 
-    private void OnGameOver()
-    {
-        GameState.IsGameRunning = false;
-        GameState.IsGameOver = true;
+        private void Update()
+        {
+            if (GameState.IsGameRunning) return;
+            if (GameState.IsGameOver) return;
 
-        StartCoroutine(WaitAndRestart());
-    }
-    
-    private void OnGameFinished()
-    {
-        GameState.IsGameRunning = false;
-        GameState.IsGameOver = true;
+            if (!IsGameStarted()) return;
 
-        StartCoroutine(WaitAndRestart());
-    }
-    
-    private void OnLevelReady()
-    {
-        GameState.IsLevelReady = true;
-    }
+            EventManager.TriggerEvent(Events.GAME_STARTED);
+        }
 
-    IEnumerator WaitAndRestart()
-    {
-        yield return new WaitForSeconds(restartLevelDelay);
-        
-        Restart();
-    }
+        private void OnGameStarted()
+        {
+            GameState.OnGameStarted();
+        }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene("Game");
-    }
+        private void OnGameOver()
+        {
+            GameState.IsGameRunning = false;
+            GameState.IsGameOver = true;
 
-    private bool IsGameStarted()
-    {
-        var isButtonPressed = Input.anyKeyDown;
-        var isTouched = Input.GetMouseButtonDown(0) && Input.mousePosition.y < Screen.height * 0.5f;
-        
-        return isButtonPressed || isTouched;
+            StartCoroutine(WaitAndRestart());
+        }
+
+        private void OnGameFinished()
+        {
+            GameState.IsGameRunning = false;
+            GameState.IsGameOver = true;
+
+            StartCoroutine(WaitAndRestart());
+        }
+
+        private void OnLevelReady()
+        {
+            GameState.IsLevelReady = true;
+        }
+
+        IEnumerator WaitAndRestart()
+        {
+            yield return new WaitForSeconds(restartLevelDelay);
+
+            Restart();
+        }
+
+        public void Restart()
+        {
+            SceneManager.LoadScene("Game");
+        }
+
+        private bool IsGameStarted()
+        {
+            var isButtonPressed = Input.anyKeyDown;
+            var isTouched = Input.GetMouseButtonDown(0) && Input.mousePosition.y < Screen.height * 0.5f;
+
+            return isButtonPressed || isTouched;
+        }
     }
 }
