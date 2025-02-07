@@ -4874,7 +4874,7 @@ PrefabInstance:
     - target: {fileID: 2006621898451924132, guid: ca79323b0ac0347fab9d3a37b1f2736a, type: 3}
       propertyPath: playerDiedParticles
       value: 
-      objectReference: {fileID: 1998506319368872331, guid: 50d5d3033e57a448e82351cf16839847, type: 3}
+      objectReference: {fileID: 5778848668930464933, guid: 215c02d3970344dbc979d05c4b711064, type: 3}
     - target: {fileID: 3936628127913556952, guid: ca79323b0ac0347fab9d3a37b1f2736a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7
@@ -4955,7 +4955,7 @@ PrefabInstance:
     - target: {fileID: 5806438111299175974, guid: 2e3c960bc25d64d2da45cd8c7f722878, type: 3}
       propertyPath: playerDiedParticles
       value: 
-      objectReference: {fileID: 1998506319368872331, guid: 50d5d3033e57a448e82351cf16839847, type: 3}
+      objectReference: {fileID: 5778848668930464933, guid: 7a2a521934e904c80a5fd32c09dd591e, type: 3}
     - target: {fileID: 9074147565294913882, guid: 2e3c960bc25d64d2da45cd8c7f722878, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7

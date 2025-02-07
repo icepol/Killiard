@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         
         GameState.DeadPlayerName = playerName;
         
-        // Instantiate(playerDiedParticles, transform.position, Quaternion.identity);
+        Instantiate(playerDiedParticles, transform.position, Quaternion.identity);
         
         var bubble = bubblesOnDead[Random.Range(0, bubblesOnDead.Length)];
         Instantiate(bubble, transform.position, Quaternion.identity);
