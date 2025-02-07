@@ -8,10 +8,14 @@ public class Player : MonoBehaviour
     
     [SerializeField] private ParticleSystem playerDiedParticles;
     [SerializeField] private LiveCam liveCam;
+    
+    [SerializeField] private Bubble[] bubblesOnFastHit;
+    [SerializeField] private Bubble[] bubblesOnDead;
 
     private Rigidbody _rigidbody;
     
     public bool IsShieldActive { get; set; }
+    
     public LiveCam LiveCam => liveCam;
     
     private void Awake()
@@ -71,6 +75,9 @@ public class Player : MonoBehaviour
         
         // Instantiate(playerDiedParticles, transform.position, Quaternion.identity);
         
+        var bubble = bubblesOnDead[Random.Range(0, bubblesOnDead.Length)];
+        Instantiate(bubble, transform.position, Quaternion.identity);
+        
         EventManager.TriggerEvent(Events.GAME_OVER);
         
         Destroy(gameObject);
@@ -108,6 +115,10 @@ public class Player : MonoBehaviour
         if (isFastHit)
         {
             liveCam.SetBangFace();
+            
+            var bubble = bubblesOnFastHit[Random.Range(0, bubblesOnFastHit.Length)];
+            var instance = Instantiate(bubble, transform.position, Quaternion.identity);
+            instance.transform.parent = transform;
         }
     }
 }

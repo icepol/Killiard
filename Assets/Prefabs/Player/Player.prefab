@@ -5104,6 +5104,12 @@ MonoBehaviour:
   enemy: {fileID: 0}
   playerDiedParticles: {fileID: 0}
   liveCam: {fileID: 0}
+  bubblesOnFastHit:
+  - {fileID: 1086701502197599827, guid: b6f987eae081143ce8d61dd47761795f, type: 3}
+  - {fileID: 8743506986782538471, guid: 531a61b60d72c40b1a560cdec1205419, type: 3}
+  bubblesOnDead:
+  - {fileID: 8541796565976866216, guid: f791459aa6eb54ebf8127cf74861bc24, type: 3}
+  - {fileID: 3355785713835887903, guid: d9f32b9e1eee44a3c8cbfc808e73fb15, type: 3}
 --- !u!114 &5017741937972705210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5116,6 +5122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a9f841066bd74b20ac9a62c78b68280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpDisplay: {fileID: 0}
   speedupMultiplier: 1.5
   powerUpDuration: 5
 --- !u!1 &7650596080123979378
